@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" title="Salle"
+		initialize="lancerApplication()"
+		>
+	<fx:Declarations>
+		<!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import Controleur.ControleurPrincipal;
+			
+			import Vue.VueSalle;
+			
+			import modele.Salle;
+			
+			import mx.collections.ArrayList;
+			
+			public static var instance:VueSalle ;
+			public var vueOeuvre:VueOeuvre ;
+			public var vueVideo:VueVideo ;
+			public var vueDescription:VueDescription ;
+			public var controleurPrincipal:ControleurPrincipal ;
+			
+			
+			
+			public function lancerApplication():void{
+				instance = this ;
+				controleurPrincipal = new ControleurPrincipal(this);
+				controleurPrincipal.demanderChargerListeDesSalles();
+			}
+			
+			
+			
+			public function afficherListeDesSalles(listeSalle:ArrayList):void{
+				
+				var length:int = listeSalle.length ;
+				var salleCourante:Salle ;
+				
+				var Y:int = 5 ;
+				var b:Button ;
+				
+				for (var i:Number = 0; i<length; i++) {
+					
+					salleCourante = Salle(listeSalle.getItemAt(i));
+					b = new Button();
+					b.label = salleCourante.getNom();
+					
+					b.x = 5 ;
+					b.y = Y + (3 * i);
+					b.width = 250 ;
+					b.addEventListener(MouseEvent.CLICK, afficherSalle);
+					groupe.addElementAt(b, 1);
+				}
+			}
+			public function afficherSalle(event:MouseEvent):void{
+				
+				
+				//this.setCurrentState("AffichageSalle");
+				var button:Button = Button(event.target);	
+				var salle:Salle = controleurPrincipal.chargerSalle(button.label);
+				navigator.pushView(VueOeuvre);
+				
+			}
+			
+			public function effacerChampRecherche():void{
+				
+				this.champRecherche.text = "" ;	
+			}
+			public function lancerRecherche():void{
+				
+				this.controleurPrincipal.lancerRecherche(this.champRecherche.text);	
+			}
+			public function afficherResultatRecherche(resultat:String):void{
+				
+				this.affichageResultat.text = resultat ;
+			}
+		]]>
+	</fx:Script>
+		
+	<s:VGroup id="groupe" width="100%" height="100%" verticalAlign="middle" horizontalAlign="center">
+		<s:Label text="Liste des salles :"/>
+		<s:Spacer width="14" height="54"/>
+		<s:Image source="assets/trait.png"/>
+		<s:TextInput id="champRecherche" x="30" y="10" width="420" click="effacerChampRecherche()"
+					 fontSize="20" text="Taper le nom de l'oeuvre ici"/>
+		<s:Button x="133" y="331" height="43" label="Rechercher" click="lancerRecherche()"
+				  fontSize="21"/>
+		<s:Spacer y="398" width="10" height="34"/>
+		<s:Label  x="14" y="77" text="Résultat :"/>
+		<s:Label id="affichageResultat" x="34" y="97" width="412" height="41"/>
+		
+	</s:VGroup>
+</s:View>

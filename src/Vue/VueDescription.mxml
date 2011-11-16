@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" title="Description"
+		initialize="init()">
+	<fx:Declarations>
+		<!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import modele.Description;
+			public function init():void{
+				VueSalle.instance.vueDescription = this ;
+				VueSalle.instance.controleurPrincipal.demanderDescription();
+			}
+			public function afficherDescription(nomOeuvre:String, description:Description):void{
+				
+				this.champNom.text = nomOeuvre;
+				this.champAnnee.text = ""+description.getAnnee();
+				this.champAuteur.text =  description.getAuteur() ;
+				this.champHistoire.text = description.getHistoire();
+			}
+			
+		]]>
+	</fx:Script>
+	
+	
+	<s:VGroup id="groupe" width="100%" height="100%" verticalAlign="middle" horizontalAlign="center">
+		
+			<s:Label text="Nom :"/>
+		<s:TextArea id="champNom" width="400" height="40" editable="false"/>
+		<s:Spacer x="229" y="155" width="22" height="18"/>
+			<s:Label x="34" y="212" text="Année :"/>
+		<s:TextArea id="champAnnee" width="400" height="40" editable="false" text="d"/>
+		<s:Spacer width="22" height="18"/>
+		<s:Label text="Auteur :"/>
+		<s:TextArea id="champAuteur" width="400" height="40" editable="false"/>
+		<s:Spacer width="22" height="18"/>
+			<s:Label x="33" y="319" text="Histoire :"/>
+			<s:TextArea id="champHistoire" y="341" width="400" height="244" editable="false"/>
+		<s:Spacer width="22" height="18"/>
+		<s:Button label="Fermer" click="navigator.popView()"/>
+		
+	</s:VGroup>
+	
+</s:View>

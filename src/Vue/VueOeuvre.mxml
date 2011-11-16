@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		initialize="init()"
+		title="Oeuvre">
+	<fx:Declarations>
+	<!--	<mx:Fade id="fadeDescription" target="{panelDescription}" duration="2000" alphaFrom="0.0" alphaTo="1.0"/>
+		<mx:Fade id="fadeVideo" target="{panelVideo}" duration="2000" alphaFrom="0.0" alphaTo="1.0"/>
+		
+		-->
+	</fx:Declarations>
+	
+	<s:states>
+		
+		
+	</s:states>
+	<fx:Script>
+		<![CDATA[
+			import modele.Oeuvre;
+			
+			public function init():void {
+				
+				VueSalle.instance.vueOeuvre = this ;
+				if(VueSalle.instance.controleurPrincipal.getSalleAffichee().getOeuvre() != null){
+					this.nomOeuvre.text = VueSalle.instance.controleurPrincipal.getSalleAffichee().getOeuvre().getNom();
+				}
+			}
+			
+			public function rechargerImage(evt:Event):void{
+				if(VueSalle.instance.controleurPrincipal.getSalleAffichee()!=null){
+					if(VueSalle.instance.controleurPrincipal.getSalleAffichee().getOeuvre()!=null){
+						this.image.source = VueSalle.instance.controleurPrincipal.getSalleAffichee().getOeuvre().getPath();
+					}
+				}
+			}
+			public function afficherOeuvre(oeuvre:Oeuvre):void{
+				
+				this.image.source = oeuvre.getPath();
+				this.nomOeuvre.text = "Nom de l'oeuvre : " + oeuvre.getNom();
+			}
+		]]>
+	</fx:Script>
+	<s:VGroup id="groupe" width="100%" height="100%" verticalAlign="middle" horizontalAlign="center">
+		<s:TextArea id="nomOeuvre" width="425" height="43" editable="false" fontSize="21"/>
+		
+		<s:Image id="image" x="25" y="53" width="425" height="446" render="rechargerImage(event)"/>
+		<s:HGroup x="27" y="518" width="426" height="160">
+			<s:Button id="butonRetour" width="80" height="138" click="navigator.popView()"
+					  icon="assets/retour.png"/>
+			<s:Spacer width="30" height="18"/>
+			<s:VGroup width="312" height="146">
+				<s:Button width="215" height="45" label="Description"
+						  click="navigator.pushView(VueDescription)"/>
+				<s:Button id="buttonvideo" width="215" height="45" label="Video"
+						  click="navigator.pushView(VueVideo)"/>
+				<s:Button width="215" height="45" label="Audio"/>
+			</s:VGroup>
+			
+		</s:HGroup>
+					  <!--click="demanderDescription();fadeDescription.play()"/>-->
+			<!--click="demanderVideo();fadeVideo.play()"/>-->
+			
+		
+	</s:VGroup>
+</s:View>
