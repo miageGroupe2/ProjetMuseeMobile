@@ -12,12 +12,18 @@
 	</fx:Declarations>
 	
 	<s:states>
+		<s:State name="State1"/>
+		<s:State name="EtatAudio"/>
 		
 		
 	</s:states>
 	<fx:Script>
 		<![CDATA[
+			import modele.Audio;
 			import modele.Oeuvre;
+			
+			public var son:Sound ;
+			public var soundChannel:SoundChannel ;
 			
 			public function init():void {
 				
@@ -39,28 +45,65 @@
 				this.image.source = oeuvre.getPath();
 				this.nomOeuvre.text = "Nom de l'oeuvre : " + oeuvre.getNom();
 			}
+			
+			public function demanderJouerAudio():void{
+				
+				VueSalle.instance.controleurPrincipal.demanderAudio();
+			}
+			
+			public function jouerAudio(audio:Audio):void{
+				
+				this.setCurrentState("EtatAudio");
+				this.son = new Sound();
+				this.son.load(new URLRequest(audio.getPath()));
+				this.soundChannel = this.son.play();				
+			}
+			public function stopAudio():void{
+				
+				this.setCurrentState("State1");
+				this.soundChannel.stop();
+				//this.son.close();
+			}
 		]]>
 	</fx:Script>
-	<s:VGroup id="groupe" width="100%" height="100%" verticalAlign="middle" horizontalAlign="center">
-		<s:TextArea id="nomOeuvre" width="425" height="43" editable="false" fontSize="21"/>
-		
-		<s:Image id="image" x="25" y="53" width="425" height="446" render="rechargerImage(event)"/>
-		<s:HGroup x="27" y="518" width="426" height="160">
-			<s:Button id="butonRetour" width="80" height="138" click="navigator.popView()"
-					  icon="assets/retour.png"/>
-			<s:Spacer width="30" height="18"/>
-			<s:VGroup width="312" height="146">
-				<s:Button width="215" height="45" label="Description"
-						  click="navigator.pushView(VueDescription)"/>
-				<s:Button id="buttonvideo" width="215" height="45" label="Video"
-						  click="navigator.pushView(VueVideo)"/>
-				<s:Button width="215" height="45" label="Audio"/>
-			</s:VGroup>
+	
+	<s:BorderContainer x="0" y="0" width="100%" height="100%" backgroundColor="#8C8C8C" >
+		<s:VGroup id="groupe" width="100%" height="100%" verticalAlign="middle" horizontalAlign="center">
+			<s:TextArea id="nomOeuvre" width="425" height="43" editable="false" fontSize="21"/>
 			
-		</s:HGroup>
-					  <!--click="demanderDescription();fadeDescription.play()"/>-->
-			<!--click="demanderVideo();fadeVideo.play()"/>-->
+			<s:Image id="image" x="25" y="53" width="425" height="446" render="rechargerImage(event)"/>
+			<s:HGroup x="27" y="518" width="426" height="160">
+				
+				<s:VGroup width="101" height="146">
+					<s:Spacer width="30" height="38"/>
+					<s:Image width="82" height="91" source="assets/back2.png" click="navigator.popView()"/>
+					
+					<!--<s:Button id="butonRetour" width="80" height="138" click="navigator.popView()"
+					icon="assets/retour.png"/>-->
+				</s:VGroup>
+				
+				
+				
+				<s:VGroup width="218" height="146">
+					<s:Button width="215" height="45" label="Description"
+							  click="navigator.pushView(VueDescription)"/>
+					<s:Button id="buttonvideo" width="215" height="45" label="Video"
+							  click="navigator.pushView(VueVideo)"/>
+					<s:Button width="215" height="45" label="Audio" click="demanderJouerAudio()" />
+				</s:VGroup>
+				
+				<s:VGroup width="312" height="146"
+						  width.EtatAudio="80">
+					<s:Spacer includeIn="EtatAudio" width="34" height="85"/>
+					<s:Image includeIn="EtatAudio" width="58" height="68" source="assets/stop.png" click="stopAudio()"/>
+				</s:VGroup>
+				
+				
+			</s:HGroup>
+						  <!--click="demanderDescription();fadeDescription.play()"/>-->
+				<!--click="demanderVideo();fadeVideo.play()"/>-->
+				
 			
-		
-	</s:VGroup>
+		</s:VGroup>
+	</s:BorderContainer>
 </s:View>

@@ -1,10 +1,12 @@
 package Controleur
 {
+	import DAO.DaoAudio;
 	import DAO.DaoDescription;
 	import DAO.DaoOeuvre;
 	import DAO.DaoSalle;
 	import DAO.DaoVideo;
 	
+	import Vue.VueSalle;
 	
 	import flash.utils.setTimeout;
 	
@@ -16,11 +18,8 @@ package Controleur
 	
 	import mx.collections.ArrayList;
 	
-	
 	import spark.components.Label;
 	import spark.components.TextInput;
-	
-	import Vue.VueSalle;
 
 	public class ControleurPrincipal
 	{
@@ -97,9 +96,14 @@ package Controleur
 			this.vueSalle.vueVideo.afficherVideo(video);
 		}
 		
+		public function demanderAudio():void{
+			
+			new DaoAudio(this.salleAffichee.getOeuvre());
+		}
+		
 		public function jouerAudio(audio:Audio):void{
 			
-			//this.myNewView.jouerAudio(audio);
+			this.vueSalle.vueOeuvre.jouerAudio(audio);
 		}
 		
 		public function demanderDescription():void{

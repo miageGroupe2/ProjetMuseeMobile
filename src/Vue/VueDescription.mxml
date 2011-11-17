@@ -24,23 +24,23 @@
 		]]>
 	</fx:Script>
 	
-	
-	<s:VGroup id="groupe" width="100%" height="100%" verticalAlign="middle" horizontalAlign="center">
-		
-			<s:Label text="Nom :"/>
-		<s:TextArea id="champNom" width="400" height="40" editable="false"/>
-		<s:Spacer x="229" y="155" width="22" height="18"/>
-			<s:Label x="34" y="212" text="Année :"/>
-		<s:TextArea id="champAnnee" width="400" height="40" editable="false" text="d"/>
-		<s:Spacer width="22" height="18"/>
-		<s:Label text="Auteur :"/>
-		<s:TextArea id="champAuteur" width="400" height="40" editable="false"/>
-		<s:Spacer width="22" height="18"/>
-			<s:Label x="33" y="319" text="Histoire :"/>
-			<s:TextArea id="champHistoire" y="341" width="400" height="244" editable="false"/>
-		<s:Spacer width="22" height="18"/>
-		<s:Button label="Fermer" click="navigator.popView()"/>
-		
-	</s:VGroup>
-	
+	<s:BorderContainer x="0" y="0" width="100%" height="100%" backgroundColor="#8C8C8C" >
+		<s:VGroup id="groupe" width="100%" height="100%" verticalAlign="middle" horizontalAlign="center">
+			
+				<s:Label text="Nom :"/>
+			<s:TextArea id="champNom" width="400" height="40" editable="false"/>
+			<s:Spacer x="229" y="155" width="22" height="18"/>
+				<s:Label x="34" y="212" text="Année :"/>
+			<s:TextArea id="champAnnee" width="400" height="40" editable="false"/>
+			<s:Spacer width="22" height="18"/>
+			<s:Label text="Auteur :"/>
+			<s:TextArea id="champAuteur" width="400" height="40" editable="false"/>
+			<s:Spacer width="22" height="18"/>
+				<s:Label x="33" y="319" text="Histoire :"/>
+				<s:TextArea id="champHistoire" y="341" width="400" height="244" editable="false"/>
+			<s:Spacer width="22" height="18"/>
+			<s:Button label="Fermer" click="navigator.popView()"/>
+			
+		</s:VGroup>
+	</s:BorderContainer>
 </s:View>

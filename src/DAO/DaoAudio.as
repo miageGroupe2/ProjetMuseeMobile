@@ -7,7 +7,7 @@ package DAO
 	import modele.Video;
 	
 	import mx.collections.ArrayList;
-	import mx.controls.Alert;
+	
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
 	import mx.rpc.http.HTTPService;
@@ -47,7 +47,7 @@ package DAO
 		
 		private function httpFault(event:FaultEvent):void { 
 			var faultstring:String = event.fault.faultString; 
-			Alert.show("Probleme de connection à la base dans DAO Audio" + faultstring); 
+			 
 		}
 	}
 }

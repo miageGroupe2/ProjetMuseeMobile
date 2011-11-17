@@ -10,12 +10,14 @@
 			
 		]]>
 	</fx:Script>
-	
-	<s:VGroup width="100%" height="100%" verticalAlign="middle" horizontalAlign="center">
-		<s:Image width="391" height="155" source="assets/Logo_NU_Nancy2_Blanc.png"/>
-		<s:Spacer x="210" y="333" width="60" height="90"/>
-		<s:Label text="Bienvenue dans le musée"/> 
-		<s:Spacer x="233" y="421" width="14" height="68"/>
-		<s:Button label="Entrer" click="navigator.pushView(VueSalle)" styleName="next"/>
-	</s:VGroup>
+	<s:BorderContainer x="0" y="0" width="100%" height="100%" backgroundColor="#8C8C8C" >
+		
+		<s:VGroup width="100%" height="100%" verticalAlign="middle" horizontalAlign="center">
+			<s:Image width="391" height="155" source="assets/Logo_NU_Nancy2_Blanc.png"/>
+			<s:Spacer x="210" y="333" width="60" height="90"/>
+			<s:Label text="Bienvenue dans le musée"/> 
+			<s:Spacer x="233" y="421" width="14" height="68"/>
+			<s:Button label="Entrer" click="navigator.pushView(VueSalle)" styleName="next"/>
+		</s:VGroup>
+	</s:BorderContainer>
 </s:View>

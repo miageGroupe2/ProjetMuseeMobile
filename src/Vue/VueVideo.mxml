@@ -22,17 +22,18 @@
 			}
 		]]>
 	</fx:Script>
-	
-	<s:VGroup id="groupe" width="100%" height="100%" verticalAlign="middle" horizontalAlign="center">
-		<s:TextArea id="champNom" x="12" width="456"/>
-	
+	<s:BorderContainer x="0" y="0" width="100%" height="100%" backgroundColor="#8C8C8C" >
+		<s:VGroup id="groupe" width="100%" height="100%" verticalAlign="middle" horizontalAlign="center">
+			<s:TextArea id="champNom" x="12" width="456"/>
 		
-		<s:VideoPlayer id="videoPlayer" x="12" width="470" height="310" loop="false"/>
-		<s:Spacer y="349" width="10" height="28"/>
-		<s:TextArea id="textAreaVideo" x="12" y="408" width="456" height="119" editable="false"/>
-		<s:Spacer x="236" y="520" width="22" height="34"/>
-		<s:Button id="boutonFermerVideo" label="Fermer" click="navigator.popView()"/>
-		
-	</s:VGroup>
+			
+			<s:VideoPlayer id="videoPlayer" x="12" width="470" height="310" loop="false"/>
+			<s:Spacer y="349" width="10" height="28"/>
+			<s:TextArea id="textAreaVideo" x="12" y="408" width="456" height="119" editable="false"/>
+			<s:Spacer x="236" y="520" width="22" height="34"/>
+			<s:Button id="boutonFermerVideo" label="Fermer" click="navigator.popView()"/>
+			
+		</s:VGroup>
+	</s:BorderContainer>
 	
 </s:View>
