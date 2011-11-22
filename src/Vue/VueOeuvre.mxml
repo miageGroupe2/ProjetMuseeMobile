@@ -61,7 +61,9 @@
 			public function stopAudio():void{
 				
 				this.setCurrentState("State1");
-				this.soundChannel.stop();
+				if (this.soundChannel != null){
+					this.soundChannel.stop();
+				}
 				//this.son.close();
 			}
 		]]>
@@ -76,19 +78,15 @@
 				
 				<s:VGroup width="101" height="146">
 					<s:Spacer width="30" height="38"/>
-					<s:Image width="82" height="91" source="assets/back2.png" click="navigator.popView()"/>
+					<s:Image width="82" height="91" source="assets/back2.png" click="stopAudio();navigator.popView()"/>
 					
-					<!--<s:Button id="butonRetour" width="80" height="138" click="navigator.popView()"
-					icon="assets/retour.png"/>-->
 				</s:VGroup>
-				
-				
 				
 				<s:VGroup width="218" height="146">
 					<s:Button width="215" height="45" label="Description"
 							  click="navigator.pushView(VueDescription)"/>
 					<s:Button id="buttonvideo" width="215" height="45" label="Video"
-							  click="navigator.pushView(VueVideo)"/>
+							  click="stopAudio();navigator.pushView(VueVideo)"/>
 					<s:Button width="215" height="45" label="Audio" click="demanderJouerAudio()" />
 				</s:VGroup>
 				
@@ -100,10 +98,6 @@
 				
 				
 			</s:HGroup>
-						  <!--click="demanderDescription();fadeDescription.play()"/>-->
-				<!--click="demanderVideo();fadeVideo.play()"/>-->
-				
-			
 		</s:VGroup>
 	</s:BorderContainer>
 </s:View>
